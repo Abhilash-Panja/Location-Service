@@ -11,4 +11,5 @@ import org.springframework.context.annotation.Configuration;
         description = "Redis driver GEO storage and fixed-radius lookup. The existing implementation passes latitude as Point.x and longitude as Point.y, reversing Redis coordinate semantics. Responses document current behavior."
 ))
 public class OpenApiConfig {
+
 }
