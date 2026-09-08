@@ -173,7 +173,7 @@ Start Service Discovery before this service.
 Current dependency:
 
 ```text
-com.rideflow:Rideflow-EntityService:0.0.4-SNAPSHOT
+com.rideflow:Rideflow-EntityService:0.0.7-SNAPSHOT
 ```
 
 If the artifact is not available:
