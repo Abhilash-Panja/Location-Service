@@ -15,6 +15,7 @@ import com.rideflow.locationservice.dto.SaveDriverLocationRequestDto;
 import com.rideflow.locationservice.service.LocationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,7 +50,7 @@ public class LocationController {
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = Boolean.class), examples = @ExampleObject(value = "false")))
     })
     @PostMapping("/drivers")
-    public ResponseEntity<Boolean> saveDriverLocation(@RequestBody SaveDriverLocationRequestDto saveDriverLocationRequestDto) {
+    public ResponseEntity<Boolean> saveDriverLocation(@Valid @RequestBody SaveDriverLocationRequestDto saveDriverLocationRequestDto) {
         try {
             Boolean response = locationService.saveDriverLocation(saveDriverLocationRequestDto.getDriverId(), saveDriverLocationRequestDto.getLatitude(), saveDriverLocationRequestDto.getLongitude());
             return new ResponseEntity<>(response, HttpStatus.CREATED);
@@ -78,7 +79,7 @@ public class LocationController {
                     content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = com.rideflow.locationservice.dto.DriverLocationDto.class)), examples = @ExampleObject(value = "[]")))
     })
     @PostMapping("/nearby/drivers")
-    public ResponseEntity<List<DriverLocationDto>> getNearbyDrivers(@RequestBody NearbyDriversRequestDto nearbyDriversRequestDto) {
+    public ResponseEntity<List<DriverLocationDto>> getNearbyDrivers(@Valid @RequestBody NearbyDriversRequestDto nearbyDriversRequestDto) {
         try {
             List<DriverLocationDto> drivers = locationService.getNearByDrivers(nearbyDriversRequestDto.getLatitude(), nearbyDriversRequestDto.getLongitude());
             return new ResponseEntity<>(drivers, HttpStatus.OK);
